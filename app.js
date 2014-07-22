@@ -8,7 +8,8 @@ app.get('/', function(req, res){
 
 app.get('/video', function(req, res){
 
-    var stat = fs.statSync('play.mp4');
+    var path = 'play.mp4';
+    var stat = fs.statSync(path);
     var range = req.headers.range;
     var total = stat.size;
 
@@ -20,7 +21,7 @@ app.get('/video', function(req, res){
             'Content-Type': 'video/mp4'
         });
 
-        return fs.createReadStream('play.mp4').pipe(res);
+        return fs.createReadStream(path).pipe(res);
     }
 
     // Chegou uma request com range, provavelmente alguém
@@ -41,7 +42,7 @@ app.get('/video', function(req, res){
         'Content-Type': 'video/mp4'
     });
 
-    fs.createReadStream('play.mp4', {
+    fs.createReadStream(path, {
         start : start,
         end : end
     }).pipe(res);
