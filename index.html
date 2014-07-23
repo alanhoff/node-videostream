@@ -16,6 +16,9 @@
         var play = document.getElementById('play');
         var pause = document.getElementById('pause');
         var seek = document.getElementById('seek');
+        
+        // Desativa o carregamento automático do vídeo
+        pop.preload('none');
 
         play.addEventListener('click', function() {
           pop.play();
